@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_philo.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hbechri <hbechri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/29 16:58:56 by marvin            #+#    #+#             */
-/*   Updated: 2023/08/29 16:58:56 by marvin           ###   ########.fr       */
+/*   Created: 2023/08/30 15:20:13 by hbechri           #+#    #+#             */
+/*   Updated: 2023/08/30 15:20:13 by hbechri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,33 +34,33 @@ t_mutex	*mutex_struct_init(t_philos *philo)
 	pthread_mutex_init(&mutex->eat, NULL);
 	pthread_mutex_init(&mutex->time, NULL);
 	pthread_mutex_init(&mutex->end, NULL);
-	mutex->philo = philo;
+	mutex->philos = philo;
 	return (mutex);
 }
 
-t_data	data_struct_init(t_philos *philo)
+t_data	*data_struct_init(t_philos *philo)
 {
 	t_data	*data;
 	int		i;
 
 	i = 0;
 	data = philo->data;
-	data = (t_data *)malloc(sizeof(t_data) * philo->nb_philos);
-	if (!philo->data)
+	data = malloc(sizeof(t_data) * philo->nb_philos);
+	if (!data)
 		return (NULL);
 	while (i < philo->nb_philos)
 	{
-		philo->data[i].id = i + 1;
-		philo->data[i].end_eat = 0;
-		philo->data[i].eat_count = 0;
-		philo->data[i].last_eat = time_ms();
-		philo->data[i].philo = philo;
+		data[i].id = i + 1;
+		data[i].end_eat = 0;
+		data[i].eat_count = 0;
+		data[i].last_eat = time_ms();
+		data[i].philos = philo;
 		i++;
 	}
 	return (data);
 }
 
-void	philo_struct_init(t_philo *philos, int ac, char **av)
+void	philo_struct_init(t_philos *philo, int ac, char **av)
 {
 	philo->nb_philos = ft_atoi(av[1]);
 	philo->time_to_die = ft_atoi(av[2]);
@@ -69,9 +69,8 @@ void	philo_struct_init(t_philo *philos, int ac, char **av)
 	if(ac == 6)
 		philo->nb_eat_max = ft_atoi(av[5]);
 	else
-		philo->nb_eat_max = -1
+		philo->nb_eat_max = -1;
 	philo->start = time_ms();
-
 	philo->data = data_struct_init(philo);
 	philo->mutex = mutex_struct_init(philo);
 }

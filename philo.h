@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hbechri <hbechri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/26 16:28:12 by hbechri           #+#    #+#             */
-/*   Updated: 2023/08/29 18:04:05 by marvin           ###   ########.fr       */
+/*   Created: 2023/08/30 15:19:48 by hbechri           #+#    #+#             */
+/*   Updated: 2023/08/30 18:19:30 by hbechri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <stdio.h>
 # include <unistd.h>
 # include <stdlib.h>
+# include <sys/time.h>
 
 typedef struct s_data
 {
@@ -25,6 +26,7 @@ typedef struct s_data
     int eat_count;
     pthread_t thread;
     long long last_eat;
+    struct s_mutex *mutex;
     struct s_philos *philos;
 }   t_data;
 
@@ -51,10 +53,24 @@ typedef struct s_philos
     t_mutex *mutex;
 }   t_philos;
 
+
+t_mutex	*mutex_struct_init(t_philos *philo);
+t_data	*data_struct_init(t_philos *philo);
+void	philo_struct_init(t_philos *philo, int ac, char **av);
+
 //pthread_t *create_threads(t_philo *philo);
+void	threads_init(t_philos *philos);
+void	*routine(void *arg);
+void	sleep_time(int t);
+
+long long	time_ms(void);
+
+int	valid_args(int ac, char **av);
+
 int ft_atoi(const char *str);
 int ft_isdigit(int c);
 int ft_strlen(char *str);
-int ft_error(char *str);
+void	ft_putstr(char *str, int fd);
+//int ft_error(char *str);
 
 #endif

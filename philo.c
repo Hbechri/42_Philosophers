@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hbechri <hbechri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/26 16:27:49 by hbechri           #+#    #+#             */
-/*   Updated: 2023/08/29 18:04:46 by marvin           ###   ########.fr       */
+/*   Created: 2023/08/30 15:20:00 by hbechri           #+#    #+#             */
+/*   Updated: 2023/08/30 18:17:53 by hbechri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,11 @@ int	main(int ac, char **av)
     {
         philo = malloc(sizeof(t_philos));
         if (!philo)
-            return (ft_error("Malloc error\n"));
+            return (printf("Malloc error\n"));
         if (valid_args(ac, av) == 0)
             return (0);
-        init_philo_struct(philo, ac, av);
+        philo_struct_init(philo, ac, av);
+        threads_init(philo);
     }
     return (0);
 }

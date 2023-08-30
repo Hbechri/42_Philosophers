@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: hbechri <hbechri@student.42.fr>            +#+  +:+       +#+         #
+#    By: marvin <marvin@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/26 16:25:57 by hbechri           #+#    #+#              #
-#    Updated: 2023/08/26 16:27:42 by hbechri          ###   ########.fr        #
+#    Updated: 2023/08/29 18:02:15 by marvin           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,12 +15,7 @@ CC = cc
 CFLAGS = -Wall -Wextra -Werror
 RM = rm -rf
 
-SRCS = main.c \
-		philo.c \
-		utils.c \
-		init.c \
-		monitor.c \
-		actions.c
+SRCS =	philo.c utils.c \
 
 OBJS = $(SRCS:.c=.o)
 

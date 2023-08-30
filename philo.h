@@ -6,7 +6,7 @@
 /*   By: hbechri <hbechri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 15:19:48 by hbechri           #+#    #+#             */
-/*   Updated: 2023/08/30 18:19:30 by hbechri          ###   ########.fr       */
+/*   Updated: 2023/08/30 20:29:28 by hbechri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ typedef struct s_philos
     int time_to_eat;
     int time_to_sleep;
     int nb_eat_max;
+    int end_eating;
     long long start;
     t_data *data;
     t_mutex *mutex;
@@ -62,6 +63,9 @@ void	philo_struct_init(t_philos *philo, int ac, char **av);
 void	threads_init(t_philos *philos);
 void	*routine(void *arg);
 void	sleep_time(int t);
+
+int	check_death(t_data *data);
+int	not_finish_eat(t_data *data);
 
 long long	time_ms(void);
 

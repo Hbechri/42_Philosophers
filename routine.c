@@ -6,12 +6,11 @@
 /*   By: hbechri <hbechri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 17:23:43 by hbechri           #+#    #+#             */
-/*   Updated: 2023/08/30 18:42:51 by hbechri          ###   ########.fr       */
+/*   Updated: 2023/08/30 20:33:02 by hbechri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
-
 
 void	print_msg(t_data *data, char *msg)
 {

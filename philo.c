@@ -6,7 +6,7 @@
 /*   By: hbechri <hbechri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 15:20:00 by hbechri           #+#    #+#             */
-/*   Updated: 2023/08/30 18:17:53 by hbechri          ###   ########.fr       */
+/*   Updated: 2023/08/30 20:30:34 by hbechri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,9 @@ int	main(int ac, char **av)
             return (0);
         philo_struct_init(philo, ac, av);
         threads_init(philo);
+        check_death(philo->data);
     }
+    else
+        printf("Error: invalid number of arguments\n");
     return (0);
 }

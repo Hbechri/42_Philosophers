@@ -6,16 +6,16 @@
 #    By: hbechri <hbechri@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/30 15:20:05 by hbechri           #+#    #+#              #
-#    Updated: 2023/08/30 18:18:44 by hbechri          ###   ########.fr        #
+#    Updated: 2023/08/30 20:28:59 by hbechri          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = philo
 CC = cc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -fsanitize=address -g3
 RM = rm -rf
 
-SRCS =	philo.c utils.c valid_args.c time.c init_philo.c routine.c\
+SRCS =	philo.c utils.c valid_args.c time.c init_philo.c routine.c death.c\
 
 OBJS = $(SRCS:.c=.o)
 

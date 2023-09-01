@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbechri <hbechri@student.42.fr>            +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 15:19:48 by hbechri           #+#    #+#             */
-/*   Updated: 2023/08/30 20:29:28 by hbechri          ###   ########.fr       */
+/*   Updated: 2023/09/01 00:10:37 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ typedef struct s_mutex
     pthread_mutex_t *forks;
     pthread_mutex_t print;
     pthread_mutex_t dead;
+    pthread_mutex_t dead1;
     pthread_mutex_t eat;
     pthread_mutex_t time;
     pthread_mutex_t end;

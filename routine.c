@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   routine.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbechri <hbechri@student.42.fr>            +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 17:23:43 by hbechri           #+#    #+#             */
-/*   Updated: 2023/08/30 20:33:02 by hbechri          ###   ########.fr       */
+/*   Updated: 2023/09/01 00:12:52 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,30 +14,30 @@
 
 void	print_msg(t_data *data, char *msg)
 {
-	pthread_mutex_lock(&data->mutex->print);
+	pthread_mutex_lock(&data->philos->mutex->print);
 	printf ("%lld philo %d %s\n", (time_ms() - data->philos->start), data->id, msg);
-	pthread_mutex_unlock(&data->mutex->print);
+	pthread_mutex_unlock(&data->philos->mutex->print);
 }
 
 void	philos_action(t_data *data)
 {
-	pthread_mutex_lock(&data->mutex->forks[data->id]);
+	pthread_mutex_lock(&data->philos->mutex->forks[data->id]);
 	print_msg(data, "has taken a fork");
     if(data->id == data->philos->nb_philos)
-        pthread_mutex_lock(&data->mutex->forks[0]);
+        pthread_mutex_lock(&data->philos->mutex->forks[0]);
     else
-	    pthread_mutex_lock(&data->mutex->forks[data->id + 1]);
+	    pthread_mutex_lock(&data->philos->mutex->forks[data->id + 1]);
 	print_msg(data, "has taken a fork");
 	print_msg(data, "is eating");
-	pthread_mutex_lock(&data->mutex->time); 
+	pthread_mutex_lock(&data->philos->mutex->time); 
 	data->last_eat = time_ms();
-	pthread_mutex_unlock(&data->mutex->time);
+	pthread_mutex_unlock(&data->philos->mutex->time);
 	sleep_time(data->philos->time_to_eat);
-	pthread_mutex_unlock(&data->mutex->forks[data->id]);
+	pthread_mutex_unlock(&data->philos->mutex->forks[data->id]);
     if(data->id == data->philos->nb_philos)
-        pthread_mutex_unlock(&data->mutex->forks[0]);
+        pthread_mutex_unlock(&data->philos->mutex->forks[0]);
     else
-	    pthread_mutex_unlock(&data->mutex->forks[data->id + 1]);
+	    pthread_mutex_unlock(&data->philos->mutex->forks[data->id + 1]);
 }
 
 void	sleep_time(int t)
@@ -62,14 +62,14 @@ void	*routine(void *arg)
 	while (1)
 	{
 		philos_action(data);
-		pthread_mutex_lock(&data->mutex->eat);
+		pthread_mutex_lock(&data->philos->mutex->eat);
 		data->eat_count++;
-		pthread_mutex_unlock(&data->mutex->eat);
+		pthread_mutex_unlock(&data->philos->mutex->eat);
 		if (data->philos->nb_eat_max != -1 && data->eat_count >= data->philos->nb_eat_max)
 		{
-			pthread_mutex_lock(&data->mutex->end);
+			pthread_mutex_lock(&data->philos->mutex->end);
 			data->end_eat = 1;
-			pthread_mutex_unlock(&data->mutex->end);
+			pthread_mutex_unlock(&data->philos->mutex->end);
 			break ;
 		}
 		print_msg(data, " is sleeping");

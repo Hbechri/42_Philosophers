@@ -6,7 +6,7 @@
 /*   By: hbechri <hbechri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 15:19:26 by hbechri           #+#    #+#             */
-/*   Updated: 2023/08/30 15:19:28 by hbechri          ###   ########.fr       */
+/*   Updated: 2023/09/02 16:40:50 by hbechri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,4 +57,12 @@ int	ft_strlen(char *str)
 void	ft_putstr(char *str, int fd)
 {
 	write(fd, str, ft_strlen(str));
+}
+
+long long	time_ms(void)
+{
+	struct timeval	time;
+
+	gettimeofday(&time, NULL);
+	return ((time.tv_sec * 1000) + (time.tv_usec / 1000));
 }

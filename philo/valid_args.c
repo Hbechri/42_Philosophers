@@ -10,7 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "philo.h"
 
 int	valid_args(int ac, char **av)
@@ -27,7 +26,7 @@ int	valid_args(int ac, char **av)
 		}
 		else if (ft_atoi(av[1]) == 0)
 		{
-			ft_putstr("Error: it must be at least 1 philosopher\n", 2);
+			ft_putstr("Error: it must be at least 2 philosopher\n", 2);
 			return (0);
 		}
 		i++;

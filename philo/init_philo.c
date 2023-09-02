@@ -21,7 +21,7 @@ t_mutex	*mutex_struct_init(t_philos *philo)
 	mutex = (t_mutex *)malloc(sizeof(t_mutex));
 	if (!mutex)
 		return (NULL);
-	mutex->forks = (pthread_mutex_t *)malloc(sizeof(pthread_mutex_t) * philo->nb_philos);
+	mutex->forks = malloc(sizeof(pthread_mutex_t) * philo->nb_philos);
 	if (!mutex->forks)
 		return (NULL);
 	while (i < philo->nb_philos)
@@ -66,10 +66,11 @@ void	philo_struct_init(t_philos *philo, int ac, char **av)
 	philo->time_to_die = ft_atoi(av[2]);
 	philo->time_to_eat = ft_atoi(av[3]);
 	philo->time_to_sleep = ft_atoi(av[4]);
-	if(ac == 6)
+	if (ac == 6)
 		philo->nb_eat_max = ft_atoi(av[5]);
 	else
 		philo->nb_eat_max = -1;
+	philo->end_eating = 0;
 	philo->start = time_ms();
 	philo->data = data_struct_init(philo);
 	philo->mutex = mutex_struct_init(philo);
